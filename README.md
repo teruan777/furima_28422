@@ -37,13 +37,12 @@ Things you may want to cover:
 | firstname_kanji       | string  | null: false |
 | familyname_katakana   | string  | null: false |
 | firstname_katakana    | string  | null: false |
-| birthday_year         | integer | null: false |
-| birthday_moon         | integer | null: false |
-| birthday_day          | integer | null: false |
+| birthday              | date    | null: false |
+
 
 ### Association
 - has_many :items
-- has_oen  :purchase
+- has_oen  :buyer
 ## itemsテーブル
 
 | Colums          | Type       | Options                   |
@@ -51,42 +50,22 @@ Things you may want to cover:
 | item            | string     | null: false               |
 | image           | string     | null: false               |
 | text            | text       |                           |
-| category        | string     | null: false               |
-| status          | string     | null: false               |
-| delivery_burden | string     | null: false               |
-| shipping_origin | string     | null: false               |
-| arrival_day     | string     | null: false               |
 | price           | integer    | null: false               |
 | user_id         | references | null: false, foreign_key: |
 
 ### Association
 - belongs_to :user
 
-## purchaseテーブル
+## buyerテーブル
 
 | Colums        | Type       | Options                   |
 | ------------- | ---------- | ------------------------- |
-| card_data     | integer    | null: false               |
-| deadline_moon | integer    | null: false               |
-| deadline_year | integer    | null: false               |
-| cvv2          | integer    | null: false               |
-| user_id       | references | null: false, foreign_key: |
-
-### Association
-- belongs_to :user
-- has_oen    :house_add
-
-## house_addテーブル
-
-| Colums        | Type       | Options                   |
-| ------------- | ---------- | ------------------------- |
-| postal_code   | integer    | null: false               |
-| prefectures   | string     | null: false               |
+| postal_code   | string     | null: false               |
 | city          | string     | null: false               |
 | address       | integer    | null: false               |
 | building_name | string     |                           |
-| pone          | integer    | null: false               |
-| purchase_id   | references | null: false, foreign_key: |
+| pone          | string     | null: false               |
+| user_id       | references | null: false, foreign_key: |
 
 ### Association
-belongs_to :purchase
+belongs_to :buyer

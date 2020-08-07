@@ -42,7 +42,7 @@ Things you may want to cover:
 
 ### Association
 - has_many :items
-- has_many :purchase
+- has_many :purchasess
 ## itemsテーブル
 
 | Colums             | Type       | Options                   |
@@ -55,12 +55,12 @@ Things you may want to cover:
 | delivery_burden_id | integer    | null: false               |
 | shipping_origin_id | integer    | null: false               |
 | arrival_day_id     | integer    | null: false               |
-| price              | string     | null: false               |
+| price              | integer    | null: false               |
 | user               | references | null: false, foreign_key: |
 
 ### Association
 - belongs_to :user
-- has_oen :purchase
+- has_many   :purchases
 
 ## purchaseテーブル
 | Colums | Type       | Option                    |
@@ -70,8 +70,8 @@ Things you may want to cover:
 
 ### Association
 belongs_to :user
-belongs_to :items
-has_oen :house_add
+belongs_to :item
+has_one :house_add
 
 ## house_addテーブル
 

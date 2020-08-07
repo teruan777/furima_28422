@@ -43,7 +43,7 @@ Things you may want to cover:
 ### Association
 - has_many :items
 - has_many :purchases
-## itemsテーブル
+## itemテーブル
 
 | Colums             | Type       | Options                   |
 |------------------- | ---------- | ------------------------- |
@@ -60,18 +60,18 @@ Things you may want to cover:
 
 ### Association
 - belongs_to :user
-- has_many   :purchases
+- has_one    :purchase
 
 ## purchaseテーブル
 | Colums | Type       | Option                    |
 | ------ | ---------- | ------------------------- |
 | user   | references | null: false, foreign_key: |
-| items  | refetences | null: false, foreign_key: |
+| item   | refetences | null: false, foreign_key: |
 
 ### Association
 belongs_to :user
 belongs_to :item
-has_one :house_add
+has_one    :house_add
 
 ## house_addテーブル
 

@@ -42,30 +42,48 @@ Things you may want to cover:
 
 ### Association
 - has_many :items
-- has_oen  :buyer
+- has_many :purchase
 ## itemsテーブル
 
-| Colums          | Type       | Options                   |
-|---------------- | ---------- | ------------------------- |
-| item            | string     | null: false               |
-| image           | string     | null: false               |
-| text            | text       |                           |
-| price           | integer    | null: false               |
-| user_id         | references | null: false, foreign_key: |
+| Colums             | Type       | Options                   |
+|------------------- | ---------- | ------------------------- |
+| item               | string     | null: false               |
+| image              | string     | null: false               |
+| text               | text       | null: false               |
+| category_id        | integer    | null: false               |
+| status_id          | integer    | null: false               |
+| delivery_burden_id | integer    | null: false               |
+| shipping_origin_id | integer    | null: false               |
+| arrival_day_id     | integer    | null: false               |
+| price              | string     | null: false               |
+| user               | references | null: false, foreign_key: |
 
 ### Association
 - belongs_to :user
+- has_oen :purchase
 
-## buyerテーブル
-
-| Colums        | Type       | Options                   |
-| ------------- | ---------- | ------------------------- |
-| postal_code   | string     | null: false               |
-| city          | string     | null: false               |
-| address       | integer    | null: false               |
-| building_name | string     |                           |
-| pone          | string     | null: false               |
-| user_id       | references | null: false, foreign_key: |
+## purchaseテーブル
+| Colums | Type       | Option                    |
+| ------ | ---------- | ------------------------- |
+| user   | references | null: false, foreign_key: |
+| items  | refetences | null: false, foreign_key: |
 
 ### Association
-belongs_to :buyer
+belongs_to :user
+belongs_to :items
+has_oen :house_add
+
+## house_addテーブル
+
+| Colums         | Type       | Options                   |
+| -------------- | ---------- | ------------------------- |
+| postal_code    | string     | null: false               |
+| prefectures_id | integer    | null: false               |
+| city           | string     | null: false               |
+| address        | string     | null: false               |
+| building_name  | string     |                           |
+| pone           | string     | null: false               |
+| user           | references | null: false, foreign_key: |
+
+### Association
+belongs_to :purchase

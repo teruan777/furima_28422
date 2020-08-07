@@ -42,7 +42,7 @@ Things you may want to cover:
 
 ### Association
 - has_many :items
-- has_many :purchasess
+- has_many :purchases
 ## itemsテーブル
 
 | Colums             | Type       | Options                   |

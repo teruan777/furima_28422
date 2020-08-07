@@ -82,7 +82,7 @@ has_one :house_add
 | city           | string     | null: false               |
 | address        | string     | null: false               |
 | building_name  | string     |                           |
-| pone           | string     | null: false               |
+| phone          | string     | null: false               |
 | user           | references | null: false, foreign_key: |
 
 ### Association

@@ -6,18 +6,24 @@ RSpec.describe Item, type: :model do
       @item = FactoryBot.build(:item)
     end
     context '商品出品できる時' do
-      it "全ての項目が入っていてかつpriceが300円以上、9999999円以下であれば商品出品できる" do
-        
+      it "全ての項目が入っていてかつitem名が40文字以下でかつtextが1000文字以下でかつpriceが300円以上、9999999円以下であれば商品出品できる" do
+
       end
     end
     context '商品出品できない時' do
       it "itemが空だと出品できない" do
       
       end
+      it "itemが40文字以上だと出品できない" do
+      
+      end
       it "imageが空だと出品できない" do
       
       end
       it "textが空だと出品できない" do
+
+      end
+      it "textが1000文字以上だと出品できない" do
 
       end
       it "category_idが -- だと出品できない" do

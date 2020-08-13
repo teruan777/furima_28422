@@ -1,6 +1,6 @@
 FactoryBot.define do
   factory :item do
-    item {Faker::Name.initials(number: 5)}
+    item {"沢庵侍"}
     trait :with_image do
       image { fixture_file_upload Rails.root.join('spec', 'files', 'テスト用画像.jpg'), 'image/jpg' }
     end

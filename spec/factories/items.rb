@@ -1,15 +1,15 @@
 FactoryBot.define do
   factory :item do
     item {Faker::Name.initials(number: 5)}
-    trait :image do
-      image { Rack::Test::UploadedFile.new(File.join(Rails.root, 'spec/filrs/bird.png')) }
+    trait :with_image do
+      image { fixture_file_upload Rails.root.join('spec', 'files', 'テスト用画像.jpg'), 'image/jpg' }
     end
     text {Faker::Lorem.sentence}
-    category_id {1}
-    status_id {1}
-    delivery_burden_id {1}
-    shipping_origin_id {1}
-    arrival_day_id {1}
+    category_id {2}
+    status_id {2}
+    delivery_burden_id {2}
+    shipping_origin_id {2}
+    arrival_day_id {2}
     price {1000}
     # association :user
 
@@ -17,6 +17,3 @@ FactoryBot.define do
   end
 end
 
-trait :image do
-  image { Rack::Test::UploadedFile.new(File.join(Rails.root, 'spec/fixtures/sample.png')) }
-end

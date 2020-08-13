@@ -1,5 +1,7 @@
 class Item < ApplicationRecord
   has_one_attached :image
+  belomgs_to :user
+  has_one :purchase
   
   extend ActiveHash::Associations::ActiveRecordExtensions
   belongs_to_active_hash :category
@@ -10,7 +12,7 @@ class Item < ApplicationRecord
 
   validates :item, :image, :text, :category, :status, :delivery_burden, :shipping_origin, :arrival_day, :price, presence: true
   validates :item, length: { maximum: 40 }
-  
+
   validates :text, length: { maximum: 1000 }
 
   validates :price, numericality: { only_integer: true }

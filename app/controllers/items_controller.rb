@@ -31,7 +31,7 @@ class ItemsController < ApplicationController
 
   def back_to_index
     unless user_signed_in?
-      redirect_to action :index
+      redirect_to action: :index
     end
   end
 

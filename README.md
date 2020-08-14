@@ -57,6 +57,7 @@ Things you may want to cover:
 | arrival_day_id     | integer    | null: false               |
 | price              | integer    | null: false               |
 | user               | references | null: false, foreign_key: |
+| buy                | boolean    | null: false               |
 
 ### Association
 - belongs_to :user
@@ -75,15 +76,15 @@ has_one    :house_add
 
 ## house_addテーブル
 
-| Colums         | Type       | Options                   |
-| -------------- | ---------- | ------------------------- |
-| postal_code    | string     | null: false               |
-| prefectures_id | integer    | null: false               |
-| city           | string     | null: false               |
-| address        | string     | null: false               |
-| building_name  | string     |                           |
-| phone          | string     | null: false               |
-| user           | references | null: false, foreign_key: |
+| Colums             | Type       | Options                   |
+| ------------------ | ---------- | ------------------------- |
+| postal_code        | string     | null: false               |
+| shipping_origin_id | integer    | null: false               |
+| city               | string     | null: false               |
+| address            | string     | null: false               |
+| building_name      | string     |                           |
+| phone              | string     | null: false               |
+| user               | references | null: false, foreign_key: |
 
 ### Association
 belongs_to :purchase

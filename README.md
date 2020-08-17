@@ -31,8 +31,7 @@ Things you may want to cover:
 | --------------------- | ------- | ----------- |
 | nickname              | string  | null: false |
 | email                 | steing  | null: false |
-| password              | string  | null: false |
-| password_confirmation | string  | null: false |
+| encrypted_password    | string  | null: false |
 | familyname_kanji      | string  | null: false |
 | firstname_kanji       | string  | null: false |
 | familyname_katakana   | string  | null: false |

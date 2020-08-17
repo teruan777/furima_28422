@@ -7,15 +7,23 @@ class User < ApplicationRecord
   has_many :purchases
 
   with_options presence: true do
-    validates :nickname, :email, :encrypted_passwaold, :passwaold_confirmation, :familyname_kanji, :firstname_kanji, :familyname_katakana, :firstname_katakana, :birthday
+    validates :nickname, :email, :password, :familyname_kanji, :firstname_kanji, :familyname_katakana, :firstname_katakana, :birthday
 
+    VALID_EMAIL_REGEX = /\A\S+@\S+\.\S+\z/
+    validates :email, format: { with: VALID_EMAIL_REGEX }
+    validates :email, format: { with: VALID_EMAIL_REGEX }
 
-    VALID_NAME_KAJI_REGEX = /\A(?=.*?[ぁ-んァ-ン一-龥])\z/
-    validates :familyname_kanji, format: { with: VALID_NAME_KAJI_REGEX }
-    validates :firstname_kanji, format: { with: VALID_NAME_KAJI_REGEX }
+    VALID_PASSWORD_REGEX = /\A(?=.*?[a-z])(?=.*?\d)[a-z\d]+\z/
+    validates :password, format: { with: VALID_PASSWORD_REGEX }
+    validates :password, format: { with: VALID_PASSWORD_REGEX }
 
-    VALID_NAME_KATAKANA_REGEX = /\A(?=.*?[ァ-ン])\z/
+    VALID_NAME_KANJI_REGEX = /\A(?:\p{Hiragana}|\p{Katakana}|[ー－]|[一-龠々])+\z/
+    validates :familyname_kanji, format: { with: VALID_NAME_KANJI_REGEX }
+    validates :firstname_kanji, format: { with: VALID_NAME_KANJI_REGEX }
+
+    VALID_NAME_KATAKANA_REGEX = /\A[ァ-ヶー－]+\z/
     validates :familyname_katakana, format: { with: VALID_NAME_KATAKANA_REGEX }
     validates :firstname_katakana, format: { with: VALID_NAME_KATAKANA_REGEX }
   end
 end
+

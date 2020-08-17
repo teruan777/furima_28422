@@ -22,7 +22,6 @@ RSpec.describe User, type: :model do
         expect(@user.errors.full_messages).to include("Email can't be blank")
       end
       it 'emailが既に登録されているemailと重複していた場合新規登録できない' do
-        # binding.pry
         @user.save
         another_user = FactoryBot.build(:user, email: @user.email)
         another_user.valid?
@@ -38,7 +37,7 @@ RSpec.describe User, type: :model do
         @user.valid?
         expect(@user.errors.full_messages).to include("Password can't be blank")
       end
-      it 'passwoldが全角の場合新規登録できない' do
+      it 'passwordが全角の場合新規登録できない' do
         @user.password = 'ABC123'
         @user.password_confirmation = 'ABC123'
         @user.valid?

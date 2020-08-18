@@ -4,12 +4,12 @@
 <div class="item-show">
   <div class="item-box">
     <h2 class="name">
-      <%= @items.item %>
+      <%= @item.item %>
     </h2>
     <div class='item-img-content'>
-      <%= image_tag @items.image ,class:"item-box-img" %>
+      <%= image_tag @item.image ,class:"item-box-img" %>
 
-      <% if @items.buy == true %>
+      <% if @item.buy == true %>
       <div class='sold-out'>
         <span>Sold Out!!</span>
       </div>
@@ -18,7 +18,7 @@
     </div>
     <div class="item-price-box">
       <span class="item-price">
-        <%= @items.price %>¥
+        <%= @item.price %>¥
       </span>
       <span class="item-postage">
         (税込) 送料込み
@@ -26,14 +26,13 @@
     </div>
 
    
-    <% if user_signed_in? && current_user.id == @items.user.id %>
+    <% if user_signed_in? && current_user.id == @item.user.id %>
       <%= link_to '商品の編集', "#", method: :get, class: "item-red-btn" %>
       <p class='or-text'>or</p>
-      <%= link_to '削除', item_path(@items.id), method: :delete, class:'item-destroy' %>
-      <%# binding.pry%>
+      <%= link_to '削除', item_path(@item.id), method: :delete, class:'item-destroy' %>
     <% else %>
 
-      <% if @items.buy == nil %>
+      <% if @item.buy == nil %>
       <%= link_to '購入画面に進む', "#" ,class:"item-red-btn"%>
       <% end %>
 
@@ -42,33 +41,33 @@
 
 
     <div class="item-explain-box">
-      <span><%= @items.text %></span>
+      <span><%= @item.text %></span>
     </div>
     <table class="detail-table">
       <tbody>
         <tr>
           <th class="detail-item">出品者</th>
-          <td class="detail-value"><%= @items.user.nickname %></td>
+          <td class="detail-value"><%= @item.user.nickname %></td>
         </tr>
         <tr>
           <th class="detail-item">カテゴリー</th>
-          <td class="detail-value"><%= @items.category.name %></td>
+          <td class="detail-value"><%= @item.category.name %></td>
         </tr>
         <tr>
           <th class="detail-item">商品の状態</th>
-          <td class="detail-value"><%= @items.status.name %></td>
+          <td class="detail-value"><%= @item.status.name %></td>
         </tr>
         <tr>
           <th class="detail-item">配送料の負担</th>
-          <td class="detail-value"><%= @items.delivery_burden.name %></td>
+          <td class="detail-value"><%= @item.delivery_burden.name %></td>
         </tr>
         <tr>
           <th class="detail-item">発送元の地域</th>
-          <td class="detail-value"><%= @items.shipping_origin.name %></td>
+          <td class="detail-value"><%= @item.shipping_origin.name %></td>
         </tr>
         <tr>
           <th class="detail-item">発送日の目安</th>
-          <td class="detail-value"><%= @items.arrival_day.name %></td>
+          <td class="detail-value"><%= @item.arrival_day.name %></td>
         </tr>
       </tbody>
     </table>

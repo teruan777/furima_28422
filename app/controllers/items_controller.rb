@@ -1,4 +1,5 @@
 class ItemsController < ApplicationController
+  before_action :set_item, only: [:show]
   before_action :authenticate_user!, only: [:new]
   before_action :back_to_index, except: [:index, :show]
 
@@ -21,7 +22,6 @@ class ItemsController < ApplicationController
   end
 
   def show
-    @items = Item.find(params[:id])
   end
 
   private
@@ -32,5 +32,9 @@ class ItemsController < ApplicationController
 
   def back_to_index
     redirect_to action: :index unless user_signed_in?
+  end
+
+  def set_item
+    @items = Item.find(params[:id])
   end
 end

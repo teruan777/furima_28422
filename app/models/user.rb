@@ -21,7 +21,7 @@ class User < ApplicationRecord
       validates :familyname_kanji
       validates :firstname_kanji
     end
-    
+
     with_options format: { with: /\A[ァ-ヶー－]+\z/.freeze } do
       validates :familyname_katakana
       validates :firstname_katakana

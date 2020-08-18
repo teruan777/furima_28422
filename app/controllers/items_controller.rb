@@ -1,5 +1,5 @@
 class ItemsController < ApplicationController
-  before_action :set_item, only: [:show]
+  before_action :set_item, only: [:show, :destroy]
   before_action :authenticate_user!, only: [:new]
   before_action :back_to_index, except: [:index, :show]
 
@@ -24,6 +24,15 @@ class ItemsController < ApplicationController
   def show
   end
 
+  def destroy
+    @item.destroy
+    if @item.destroy
+      redirect_to root_path
+    else
+      render :show
+    end
+  end
+
   private
 
   def item_params
@@ -35,6 +44,6 @@ class ItemsController < ApplicationController
   end
 
   def set_item
-    @items = Item.find(params[:id])
+    @item = Item.find(params[:id])
   end
 end

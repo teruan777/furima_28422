@@ -3,7 +3,7 @@ class PurchasesController < ApplicationController
   def create
     @purchase = Purchase.new(#: purchase_params[:#])
     if @purchase.valid?
-      @item = Item.find(pamams[:item_id])
+      @item = Item.find(params[:item_id])
       pay_item
       @purchase.save
       return redirect_to item_path(@item.id)

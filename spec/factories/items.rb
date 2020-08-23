@@ -11,6 +11,6 @@ FactoryBot.define do
     shipping_origin_id { 2 }
     arrival_day_id { 2 }
     price { 1000 }
-    # association :user
+    association :user
   end
 end

@@ -88,3 +88,5 @@ has_one    :house_add
 
 ### Association
 belongs_to :purchase
+
+<!-- test -->

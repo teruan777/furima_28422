@@ -1,5 +1,5 @@
 class PurchasesController < ApplicationController
-  # before_action :back_to_root
+
   before_action :authenticate_user!, only: [:index]
 
   def index

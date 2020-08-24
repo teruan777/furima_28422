@@ -27,6 +27,10 @@
 
    
       <% if user_signed_in? && current_user.id == @item.user.id   %>
+        <% if @item.buy == true %>
+          <p class='or-text'>｜この度はFURIMAアプリをご利用いただき誠にありがとうございました｜</p>
+          <p class='or-text'>｜恐れながら商品は既に購入されましたので編集を行うことができません｜</p>
+        <% end %>
         <%= link_to '商品の編集', edit_item_path(@item.id), method: :get, class: "item-red-btn" %>
         <p class='or-text'>or</p>
         <%= link_to '削除', item_path(@item.id), method: :delete, class:'item-destroy' %>

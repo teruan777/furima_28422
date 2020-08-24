@@ -1,6 +1,6 @@
 class PurchasesController < ApplicationController
-  # before_action :back_to_root
   before_action :authenticate_user!, only: [:index]
+  before_action :back_to_root
 
   def index
     @item = Item.find(params[:item_id])
@@ -41,6 +41,9 @@ class PurchasesController < ApplicationController
   end
 
   def back_to_root
-    redirect_to root_path unless user_signed_in?
+    @item = Item.find(params[:item_id])
+    if current_user.id == @item.user_id
+    redirect_to root_path
+    end
   end
 end

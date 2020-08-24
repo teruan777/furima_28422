@@ -1,5 +1,6 @@
 class ItemsController < ApplicationController
   before_action :set_item, only: [:show, :destroy, :edit, :update]
+  before_action :back_to_edit, only: [:edit]
   before_action :authenticate_user!, only: [:new, :edit]
   before_action :back_to_index, except: [:index, :show]
 
@@ -58,4 +59,9 @@ class ItemsController < ApplicationController
   def set_item
     @item = Item.find(params[:id])
   end
+
+  def back_to_edit
+    redirect_to item_path(@item.id) unless @item.buy == nil
+  end
+  
 end

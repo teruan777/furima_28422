@@ -56,7 +56,8 @@ Things you may want to cover:
 | arrival_day_id     | integer    | null: false               |
 | price              | integer    | null: false               |
 | user               | references | null: false, foreign_key: |
-| buy                | boolean    | null: false               |
+| buy                | boolean    |                           |
+| keep               | boolean    |                           |
 
 
 ### Association

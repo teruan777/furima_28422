@@ -57,7 +57,7 @@ Things you may want to cover:
 | price              | integer    | null: false               |
 | user               | references | null: false, foreign_key: |
 | buy                | boolean    |                           |
-| keep               | boolean    |                           |
+
 
 
 ### Association
@@ -90,4 +90,14 @@ has_one    :house_add
 ### Association
 belongs_to :purchase
 
-<!-- test -->
+
+## keepテーブル
+| Colums | Type       | Option                    |
+| ------ | ---------- | ------------------------- |
+| user   | references | null: false, foreign_key: |
+| item   | refetences | null: false, foreign_key: |
+
+### Association
+belongs_to :user
+belongs_to :item
+

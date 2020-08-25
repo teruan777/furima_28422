@@ -31,8 +31,7 @@ Things you may want to cover:
 | --------------------- | ------- | ----------- |
 | nickname              | string  | null: false |
 | email                 | steing  | null: false |
-| password              | string  | null: false |
-| password_confirmation | string  | null: false |
+| encrypted_password    | string  | null: false |
 | familyname_kanji      | string  | null: false |
 | firstname_kanji       | string  | null: false |
 | familyname_katakana   | string  | null: false |
@@ -60,6 +59,7 @@ Things you may want to cover:
 | buy                | boolean    |                           |
 | keep               | boolean    |                           |
 
+
 ### Association
 - belongs_to :user
 - has_one    :purchase
@@ -68,7 +68,7 @@ Things you may want to cover:
 | Colums | Type       | Option                    |
 | ------ | ---------- | ------------------------- |
 | user   | references | null: false, foreign_key: |
-| item   | refetences | null: false, foreign_key: |
+| item   | references | null: false, foreign_key: |
 
 ### Association
 belongs_to :user
@@ -77,15 +77,17 @@ has_one    :house_add
 
 ## house_addテーブル
 
-| Colums         | Type       | Options                   |
-| -------------- | ---------- | ------------------------- |
-| postal_code    | string     | null: false               |
-| prefectures_id | integer    | null: false               |
-| city           | string     | null: false               |
-| address        | string     | null: false               |
-| building_name  | string     |                           |
-| phone          | string     | null: false               |
-| user           | references | null: false, foreign_key: |
+| Colums             | Type       | Options                   |
+| ------------------ | ---------- | ------------------------- |
+| postal_code        | string     | null: false               |
+| shipping_origin_id | integer    | null: false               |
+| city               | string     | null: false               |
+| address            | string     | null: false               |
+| building_name      | string     |                           |
+| phone              | string     | null: false               |
+| purchase           | references | null: false, foreign_key: |
 
 ### Association
 belongs_to :purchase
+
+<!-- test -->

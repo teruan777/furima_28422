@@ -1,8 +1,9 @@
 class ItemsController < ApplicationController
   before_action :set_item, only: [:show, :destroy, :edit, :update]
+  before_action :search_item, only: [:shadow_search, :search]
   before_action :back_to_edit, only: [:edit]
   before_action :authenticate_user!, only: [:new, :edit]
-  before_action :back_to_index, except: [:index, :show]
+  before_action :back_to_index, except: [:index, :show, :shadow_search, :search]
 
   def index
     @items = Item.all.order('created_at DESC')
@@ -46,6 +47,14 @@ class ItemsController < ApplicationController
     end
   end
 
+  def shadow_search
+    @search = Item.all
+  end
+
+  def search
+    @results = @p.result.where(buy: nil)
+  end
+
   private
 
   def item_params
@@ -56,6 +65,10 @@ class ItemsController < ApplicationController
     redirect_to action: :index unless user_signed_in?
   end
 
+  def search_item
+    @p =Item.ransack(params[:q])
+  end
+
   def set_item
     @item = Item.find(params[:id])
   end
@@ -63,5 +76,6 @@ class ItemsController < ApplicationController
   def back_to_edit
     redirect_to item_path(@item.id) unless @item.buy == nil
   end
+
   
 end

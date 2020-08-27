@@ -1,0 +1,51 @@
+<%= render "shared/header" %>
+
+<div class='item-contentss'>
+  <h1 class='title'>商品検索</h1>
+
+<%= search_form_for @p, url: items_search_path do |f| %>
+  <div class='searchs'>
+    <div class='category'>
+      <div class=category-font>
+        <%= f.label :category_id_eq, 'カテゴリー' %>
+      </div>
+      <div class='category-select'>
+        <%= f.collection_select :category_id_eq, @category, :id, :name,  include_blank: '指定なし' %>
+      </div>
+    </div>
+      <br>
+    <div class='category'>
+      <div class=category-font>
+        <%= f.label :status_id_eq, '商品の状態' %>
+      </div>
+      <div class='category-select'>
+        <%= f.collection_select :status_id_eq, @status, :id, :name,  include_blank: '指定なし' %>
+      </div>
+    </div>
+      <br>
+    <div class='category'>
+      <div class=category-font>
+        <%= f.label :delivery_burden_id_eq, '配送料の負担' %>
+      </div>
+      <div class='category-select'>
+        <%= f.collection_select :delivery_burden_id_eq, @delivery_burden, :id, :name,  include_blank: '指定なし' %>
+      </div>
+    </div>
+      <br>
+    <div class='category'>
+      <div class=category-font>
+        <%= f.label :arrival_day_eq, '発送までの日数' %>
+      </div>
+      <div class='category-select'>
+        <%= f.collection_select :arrival_day_id_eq, @arrival_day, :id, :name,  include_blank: '指定なし' %>
+      </div>
+    </div>
+      <br>
+      <div class='takana'>
+        <%= f.submit '検索'  %>
+      </div>
+  </div>
+</div>
+<% end %>
+
+<%= render "shared/footer" %>

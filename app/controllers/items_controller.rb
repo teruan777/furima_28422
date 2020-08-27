@@ -67,6 +67,10 @@ class ItemsController < ApplicationController
 
   def search_item
     @p =Item.ransack(params[:q])
+    @category = Category.where.not(id: 1)
+    @status = Status.where.not(id: 1)
+    @delivery_burden= DeliveryBurden.where.not(id: 1)
+    @arrival_day= ArrivalDay.where.not(id: 1)
   end
 
   def set_item

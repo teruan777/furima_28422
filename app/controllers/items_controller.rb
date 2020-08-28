@@ -55,11 +55,28 @@ class ItemsController < ApplicationController
     @results = @p.result.where(buy: nil)
   end
 
+  def checked
+    if @item.checked
+      @item.update(checked: false)
+    else
+      @item.update(checked: true)
+    end
+
+    item = Item.find(params[:id])
+    render json { item: item }
+  end
+
+
   private
 
   def item_params
     params.require(:item).permit(:item, :image, :text, :category_id, :status_id, :delivery_burden_id, :shipping_origin_id, :arrival_day_id, :price).merge(user_id: current_user.id)
   end
+
+  # def keep_params
+  #   params.require(:keep).permit().merge(user_id: current_user.id item_id: )
+  # end
+
 
   def back_to_index
     redirect_to action: :index unless user_signed_in?

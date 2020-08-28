@@ -4,8 +4,8 @@ Rails.application.routes.draw do
   root 'items#index'
   get 'items/shadow_search' 
   get 'items/search'
+  # get 'items/:id', to: 'items#checked'
   resources :items do
     resources :purchases, only:[:index, :create]
   end
-
 end

@@ -1,5 +1,6 @@
 class ItemsController < ApplicationController
   before_action :set_item, only: [:show, :destroy, :edit, :update]
+  before_action :set_keep, only: [:show]
   before_action :search_item, only: [:shadow_search, :search]
   before_action :back_to_edit, only: [:edit]
   before_action :authenticate_user!, only: [:new, :edit]
@@ -55,11 +56,16 @@ class ItemsController < ApplicationController
     @results = @p.result.where(buy: nil)
   end
 
+
+
+
   private
 
   def item_params
     params.require(:item).permit(:item, :image, :text, :category_id, :status_id, :delivery_burden_id, :shipping_origin_id, :arrival_day_id, :price).merge(user_id: current_user.id)
   end
+
+
 
   def back_to_index
     redirect_to action: :index unless user_signed_in?
@@ -77,9 +83,15 @@ class ItemsController < ApplicationController
     @item = Item.find(params[:id])
   end
 
+
   def back_to_edit
     redirect_to item_path(@item.id) unless @item.buy == nil
   end
 
+  def set_keep
+    if user_signed_in?
+      @keeps = Keep.find_by(user_id: current_user.id, item_id: @item.id)
+    end
+  end
   
 end

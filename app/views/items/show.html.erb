@@ -77,8 +77,24 @@
     </table>
     <div class="option">
       <div class="favorite-btn">
-        <%= image_tag "star.png" ,class:"favorite-star-icon" ,width:"20",height:"20"%>
-        <span>お気に入り 0</span>
+        <% if user_signed_in? %>
+          <% if current_user.id != @item.user_id %>
+            <% if @keeps.present? %>
+              <% if current_user.id == @keeps.user_id %>
+                <%= image_tag "star.png" ,class:"favorite-star-icon" ,width:"20",height:"20"%>
+                <%= link_to 'お気に入り解除', item_keep_path(@item.id), method: :delete %>
+              <% end %>
+            <% else %>
+              <%= link_to 'お気に入り', item_keeps_path(@item.id), method: :post  %>
+            <% end %>
+          <% else %>
+            <%= image_tag "star.png" ,class:"favorite-star-icon" ,width:"20",height:"20"%>
+            <span>お客様の商品です</span>
+          <% end %>
+        <% else %>
+          <%= image_tag "star.png" ,class:"favorite-star-icon" ,width:"20",height:"20"%>
+          <span>ログインしてね</span>
+        <% end %>
       </div>
       <div class="report-btn">
         <%= image_tag "flag.png" ,class:"report-flag-icon" ,width:"20",height:"20"%>

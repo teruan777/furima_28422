@@ -98,9 +98,8 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  margin: 0 auto;
-  padding: 10vh 0;
-}
+  padding-bottom: 10vh;
+ }
 
 .item-contentss>.title {
   font-size: 5vh;
@@ -109,19 +108,21 @@
 }
 
 .searchs {
-  
-  margin-top: 5vh;
+
+  display: flex;
+  margin: 5vh 0;
 
 
 } 
 .searchs>.category {
   background-image: url(https://sozai-good.com/download?id=4199&type=2&subnumber=0&extention=png);
-  justify-content: center;
-  align-items: center;
-  margin: 1px, auto;
-  border: 2px solid black;
   background-color: paleturquoise;
-  font-size: 3vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  border: 2px solid black;
+  margin: 0 1vw;
+  font-size: 1.2vw;
 } 
 
 
@@ -129,18 +130,25 @@
 .category>.category-font {
   background-color: blanchedalmond;
   border: 1px solid black;
-  padding: 0.2vw;
-  margin: 20px 50px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 1vh 5vh;
 }
 
 .category>.category-select {
-  margin: 20px;
-  margin-bottom: 20px;
-  font-size: 3vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  font-size: 0.9vw;
+  margin-bottom: 1vh;
   
   
 }
 
-.takana {
-  font-size: 5vh;
+.botan {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  font-size: 3.7vh;
 }

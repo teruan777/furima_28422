@@ -6,6 +6,7 @@ class User < ApplicationRecord
   has_many :items
   has_many :keeps
   has_many :purchases
+  has_many :comments
 
   with_options presence: true do
     validates :nickname, :email, :password, :familyname_kanji, :firstname_kanji, :familyname_katakana, :firstname_katakana, :birthday

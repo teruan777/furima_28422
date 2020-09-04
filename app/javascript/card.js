@@ -1,6 +1,6 @@
 const pay = () => {
 
-
+  if (window.location.href.match(/\/items\/:item_id\/purchases/)) {
   Payjp.setPublicKey(process.env.PAYJP_PUBLIC_KEY); // PAY.JPテスト公開鍵
 
   const form = document.getElementById("charge-form");
@@ -41,7 +41,7 @@ const pay = () => {
 
       }
     });
-  });
+  })};
 };
 
 

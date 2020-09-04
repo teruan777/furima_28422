@@ -10,6 +10,13 @@
         <%= link_to item_path(keep.item.id), method: :get do %>
         <div class='item-img-content'>
           <%= image_tag keep.item.image, class: "item-img" if keep.item.image.attached? %>
+
+          <% if keep.item.buy == true %>
+            <div class='sold-out'>
+              <span>Sold Out!!</span>
+            </div>
+          <% end %>
+
         </div>
         <div class='item-info'>
           <h3 class='item-name'>

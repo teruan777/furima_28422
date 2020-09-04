@@ -1,6 +1,6 @@
 const pay = () => {
-
-  if (window.location.href.match(/\/items\/:item_id\/purchases/)) {
+  const existence  = document.querySelector('input[name="commit"]');
+  if (existence) {
   Payjp.setPublicKey(process.env.PAYJP_PUBLIC_KEY); // PAY.JPテスト公開鍵
 
   const form = document.getElementById("charge-form");

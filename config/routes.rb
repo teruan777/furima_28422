@@ -8,6 +8,7 @@ Rails.application.routes.draw do
   resources :items do
     resources :purchases, only:[:index, :create]
     resources :keeps, only:[:create, :destroy]
+    resources :comments, only: [:create]
   end
   resources :keeps, only:[:index]
 end

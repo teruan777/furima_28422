@@ -25,6 +25,8 @@ class ItemsController < ApplicationController
   end
 
   def show
+    @comment = Comment.new
+    @comments = @item.comments.includes(:user)
   end
 
   def destroy
@@ -93,5 +95,7 @@ class ItemsController < ApplicationController
       @keeps = Keep.find_by(user_id: current_user.id, item_id: @item.id)
     end
   end
+
+
   
 end

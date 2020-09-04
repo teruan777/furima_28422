@@ -104,7 +104,43 @@
   </div>
   <%# /商品の概要 %>
 
-  <div class="comment-box">
+  <div class="container">
+    <% if current_user %>
+      <%= form_with(model: [@item, @comment], local: true) do |form| %>
+        <%= form.text_field :text, placeholder: "コメントしましょう" %>
+        <%= form.submit "送信"%>
+      <% end %>
+    <% else %>
+      <strong><p>※※※ コメントの投稿には新規登録/ログインが必要です ※※※</p></strong>
+    <% end %>
+  </div>
+  <div class="comment-warning">
+    <p>相手のことを考えて丁寧なコメントを心がけましょう</p>
+    <p>不適切な発言をする方は退会処分となる可能性がございます</p>
+  </div>
+  <div class="comment-itirann" >
+    <h4>＜コメント一覧＞</h4>
+  </div>
+  <div class="comments", id="comments_id">
+    <% if @comments %>
+      <% @comments.reverse_each do |comment| %>
+        <div class="comment" >
+        <p>
+        <div class="comment-href">
+          <p><%= comment.user.nickname %></p>
+        </div>
+        <div class="comment-bun">
+          <%= comment.text %>
+        </div>
+        </p>
+        </div>
+      <% end %>
+    <% end %>
+  </div>
+
+
+
+  <%# <div class="comment-box">
     <form>
       <textarea class="comment-text"></textarea>
       <p class="comment-warn">
@@ -113,11 +149,11 @@
         不快な言葉遣いなどは利用制限や退会処分となることがあります。
       </p>
       <button type="submit" class="comment-btn">
-        <%= image_tag "comment.png" ,class:"comment-flag-icon" ,width:"20",height:"25"%>
-        <span>コメントする<span>
+        <%#= image_tag "comment.png" ,class:"comment-flag-icon" ,width:"20",height:"25"%>
+        <%# <span>コメントする<span>
       </button>
     </form>
-  </div>
+  </div>  %>
   <div class="links">
     <a href="#" class="change-item-btn">
       ＜ 前の商品

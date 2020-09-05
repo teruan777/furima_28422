@@ -75,4 +75,4 @@ gem "aws-sdk-s3", require: false
 
 gem 'ransack'
 
-gem 'redis-rails'
+

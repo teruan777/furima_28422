@@ -1,5 +1,28 @@
 <%= render "shared/header" %>
 
+<div class="item-show">
+  <div class="links">
+  <% if @item.previous.present? %>
+    <div class="change-item-btn">
+      <%= link_to '＜ 前の商品', item_path(@item.previous) %>
+    </div>
+  <% else %>
+    <div class="change-item-btn">
+      ＜ ーーーー
+    </div>
+  <% end %>
+  <% if @item.next.present? %>
+    <div class="change-item-btn">
+      <%= link_to '後の商品 ＞', item_path(@item.next) %>
+    </div>
+  <% else %>
+    <div class="change-item-btn">
+      ーーーー ＞
+    </div>
+  <% end %>
+  </div>
+</div>
+
 <%# 商品の概要 %>
 <div class="item-show">
   <div class="item-box">
@@ -139,14 +162,28 @@
   </div>
 
   <div class="links">
-    <a href="#" class="change-item-btn">
-      ＜ 前の商品
-    </a>
-    <a href="#" class="change-item-btn">
-      後ろの商品 ＞
-    </a>
+  <% if @item.previous.present? %>
+    <div class="change-item-btn">
+      <%= link_to '＜ 前の商品', item_path(@item.previous) %>
+    </div>
+  <% else %>
+    <div class="change-item-btn">
+      ＜ ーーーー
+    </div>
+  <% end %>
+  <% if @item.next.present? %>
+    <div class="change-item-btn">
+      <%= link_to '後の商品 ＞', item_path(@item.next) %>
+    </div>
+  <% else %>
+    <div class="change-item-btn">
+      ーーーー ＞
+    </div>
+  <% end %>
   </div>
-  <a href="/items/shadow_search" class='another-item'><%= "もっと商品を探してみる" %></a>
+  <div class='another-item'>
+    <%= link_to "もっと商品を探してみる", items_shadow_search_path %>
+  </div>
 </div>
 
 <%= render "shared/footer" %>

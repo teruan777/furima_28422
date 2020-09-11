@@ -1,6 +1,5 @@
 class ItemsController < ApplicationController
   before_action :set_item, only: [:show, :destroy, :edit, :update]
-  before_action :set_item_up_under, only: [:show]
   before_action :set_keep, only: [:show]
   before_action :search_item, only: [:shadow_search, :search]
   before_action :back_to_edit, only: [:edit]
@@ -26,7 +25,6 @@ class ItemsController < ApplicationController
   end
 
   def show
-    # binding.pry
     @comment = Comment.new
     @comments = @item.comments.includes(:user)
   end
@@ -85,18 +83,6 @@ class ItemsController < ApplicationController
 
   def set_item
     @item = Item.find(params[:id])
-  end
-
-  def set_item_up_under
-    @item_up_under = Item.find(params[:id])
-
-    # under = @item.id - 1
-    # first = Item.first
-    # if first.id != under
-    #   @item_under = Item.find(under)
-    # else
-    #   @item_under = Item.last
-    # end
   end
 
 

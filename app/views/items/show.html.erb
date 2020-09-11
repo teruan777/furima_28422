@@ -1,5 +1,28 @@
 <%= render "shared/header" %>
 
+<div class="item-show">
+  <div class="links">
+  <% if @item.previous.present? %>
+    <div class="change-item-btn">
+      <%= link_to '＜ 前の商品', item_path(@item.previous) %>
+    </div>
+  <% else %>
+    <div class="change-item-btn">
+      ＜ ーーーー
+    </div>
+  <% end %>
+  <% if @item.next.present? %>
+    <div class="change-item-btn">
+      <%= link_to '後の商品 ＞', item_path(@item.next) %>
+    </div>
+  <% else %>
+    <div class="change-item-btn">
+      ーーーー ＞
+    </div>
+  <% end %>
+  </div>
+</div>
+
 <%# 商品の概要 %>
 <div class="item-show">
   <div class="item-box">

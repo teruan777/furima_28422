@@ -143,14 +143,24 @@
     <div class="change-item-btn">
       <%= link_to '＜ 前の商品', item_path(@item.previous) %>
     </div>
+  <% else %>
+    <div class="change-item-btn">
+      ＜ ーーーー
+    </div>
   <% end %>
   <% if @item.next.present? %>
     <div class="change-item-btn">
       <%= link_to '後の商品 ＞', item_path(@item.next) %>
     </div>
+  <% else %>
+    <div class="change-item-btn">
+      ーーーー ＞
+    </div>
   <% end %>
   </div>
-  <a href="/items/shadow_search" class='another-item'><%= "もっと商品を探してみる" %></a>
+  <div class='another-item'>
+    <%= link_to "もっと商品を探してみる", items_shadow_search_path %>
+  </div>
 </div>
 
 <%= render "shared/footer" %>

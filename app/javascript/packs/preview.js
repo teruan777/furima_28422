@@ -20,6 +20,8 @@ if (window.location.href.match(/\/items\/new/) || window.location.href.match(/\/
       const blob = window.URL.createObjectURL(file);
       
       createImageHTML(blob);
+      ImageList.width = 500;
+      ImageList.height = 300;
     });
   });
 }

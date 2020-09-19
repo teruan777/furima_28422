@@ -80,6 +80,13 @@
   padding: 2vh 0;
 }
 
+.image-preview>div>img {
+  height: 40vh;
+  width: 30vw;
+
+
+}
+
 
 .click-upload {
   margin: 15px 0;

@@ -30,7 +30,7 @@
   width: 60vw;
   min-height: 500px;
   background-color: rgb(205, 202, 202);
-  object-fit: contain;
+  object-fit: fill;
 }
 
 .item-price-box {

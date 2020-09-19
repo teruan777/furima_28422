@@ -95,7 +95,4 @@ class ItemsController < ApplicationController
       @keeps = Keep.find_by(user_id: current_user.id, item_id: @item.id)
     end
   end
-
-
-  
 end

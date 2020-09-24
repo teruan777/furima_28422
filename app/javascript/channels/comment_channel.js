@@ -11,15 +11,13 @@ consumer.subscriptions.create("CommentChannel", {
 
   received(data) {
     const html = `
-    <div class="comment" >
-      <p>
+    <div class="comment">
       <div class="comment-href">
         <p>${data.user}</p>
       </div>
       <div class="comment-bun">
         ${data.content.text}
       </div>
-      </p>
     </div>`;
     const comments = document.getElementById('comments_id');
     const newComment = document.getElementById('comment_text');

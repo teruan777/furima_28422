@@ -78,3 +78,4 @@ gem 'ransack'
 gem 'rails-i18n'
 
 
+

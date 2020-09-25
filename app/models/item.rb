@@ -15,6 +15,6 @@ class Item < ApplicationRecord
   with_options presence: true do
     validates :item, :image, :text, :category, :status, :delivery_burden, :shipping_origin, :arrival_day
     validates :price, numericality: { only_integer: true, greater_than_or_equal_to: 300, less_than_or_equal_to: 9_999_999 }
-    validates :category_id, :status_id, :delivery_burden_id, :shipping_origin_id, :arrival_day_id, numericality: { other_than: 1 }
+    validates :category_id, :status_id, :delivery_burden_id, :shipping_origin_id, :arrival_day_id, numericality: { other_than: 1, message: "は ” -- ” 以外を選択してください" }
   end
 end

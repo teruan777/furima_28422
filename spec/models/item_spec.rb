@@ -14,7 +14,7 @@ RSpec.describe Item, type: :model do
       it 'itemが空だと出品できない' do
         @item.item = nil
         @item.valid?
-        expect(@item.errors.full_messages).to include("Item can't be blank")
+        expect(@item.errors.full_messages).to include('商品の名前を入力してください')
       end
       it 'imageが空だと出品できない' do
         @item.image = nil
@@ -29,27 +29,27 @@ RSpec.describe Item, type: :model do
       it 'category_idが -- だと出品できない' do
         @item.category_id = 1
         @item.valid?
-        expect(@item.errors.full_messages).to include('Category must be other than 1')
+        expect(@item.errors.full_messages).to include('Category は ” -- ” 以外を選択してください')
       end
       it 'status_idが -- だと出品できない' do
         @item.status_id = 1
         @item.valid?
-        expect(@item.errors.full_messages).to include('Status must be other than 1')
+        expect(@item.errors.full_messages).to include('Status は ” -- ” 以外を選択してください')
       end
       it 'delivery_burden_idが -- だと出品できない' do
         @item.delivery_burden_id = 1
         @item.valid?
-        expect(@item.errors.full_messages).to include('Delivery burden must be other than 1')
+        expect(@item.errors.full_messages).to include('Delivery burden は ” -- ” 以外を選択してください')
       end
       it 'shipping_origin_idが -- だと出品できない' do
         @item.shipping_origin_id = 1
         @item.valid?
-        expect(@item.errors.full_messages).to include('Shipping origin must be other than 1')
+        expect(@item.errors.full_messages).to include('Shipping origin は ” -- ” 以外を選択してください')
       end
       it 'arrival_day_idが -- だと出品できない' do
         @item.arrival_day_id = 1
         @item.valid?
-        expect(@item.errors.full_messages).to include('Arrival day must be other than 1')
+        expect(@item.errors.full_messages).to include('Arrival day は ” -- ” 以外を選択してください')
       end
       it 'priceが空だと出品できない' do
         @item.price = nil

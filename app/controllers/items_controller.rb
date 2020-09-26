@@ -16,7 +16,6 @@ class ItemsController < ApplicationController
 
   def create
     @item = Item.create(item_params)
-
     if @item.save
       redirect_to items_path
     else
@@ -65,6 +64,10 @@ class ItemsController < ApplicationController
 
   def item_params
     params.require(:item).permit(:item, :image, :text, :category_id, :status_id, :delivery_burden_id, :shipping_origin_id, :arrival_day_id, :price).merge(user_id: current_user.id)
+  end
+
+  def error_item_params
+    params.require(:item).permit(:item, :image, :text, :price)
   end
 
 

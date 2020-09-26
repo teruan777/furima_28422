@@ -32,7 +32,7 @@ const pay = () => {
         document.getElementById("charge-form").submit();
         document.getElementById("charge-form").reset();
       } else {
-        alert("Token can't be blank")
+        alert("カード情報を正しく入力してください")
         const input = document.getElementById("itemID");
         const itemID = input.getAttribute('data-id')
         console.log(itemID) 

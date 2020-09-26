@@ -7,15 +7,15 @@ class PurchaseHouseAdd
 
     validates :city, :address
 
-    with_options format: {with: /\A[0-9]{3}-[0-9]{4}\z/, message: "is invalid. Include hyphen(-)"} do
+    with_options format: {with: /\A[0-9]{3}-[0-9]{4}\z/, message: "にはハイフン(-)を含めてください"} do
       validates :postal_code
     end
 
-    with_options numericality: { other_than: 1, message: "can't be blank" } do
+    with_options numericality: { other_than: 1, message: "を入力してください" } do
       validates :shipping_origin_id
     end
 
-    with_options format: {with: /\A[0-9]{,11}\z/, message: "Enter the phone number within 11 digits without hyphens"} do
+    with_options format: {with: /\A[0-9]{,11}\z/, message: "を11桁以内かつハイフン(-)含めず入力してください"} do
       validates :phone
     end
   end

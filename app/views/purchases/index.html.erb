@@ -33,7 +33,7 @@
 
     <%= form_with model: @house_add, url: item_purchases_path, method: :post, id: 'charge-form', class: 'transaction-form-wrap', name:"form",local: true do |f| %>
     <%#=session[:house_add]%>
-    <%= render 'error_messages_purchase', house_add: @house_add, model: f.object %>
+    <%= render 'layouts/error_messages_purchase', house_add: @house_add, model: f.object %>
     
     <%# カード情報の入力 %>
     <div class='credit-card-form'>

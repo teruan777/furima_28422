@@ -13,7 +13,9 @@ RSpec.describe Item, type: :model do
     context '商品出品できない時' do
       it 'itemが空だと出品できない' do
         @item.item = nil
-        @item.valid?
+        I18n.with_locale(:ja) do
+          @item.valid?
+        end
         expect(@item.errors[:item]).to include("を入力してください")
       end
       it 'imageが空だと出品できない' do

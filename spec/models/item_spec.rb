@@ -13,7 +13,7 @@ RSpec.describe Item, type: :model do
     context '商品出品できない時' do
       it 'itemが空だと出品できない' do
         @item.item = nil
-        I18n.with_locale(:ja) do
+        I18n.with_locale(:ja) do #日本語のエラー文を用いて検証
           @item.valid?
         end
         expect(@item.errors[:item]).to include("を入力してください")

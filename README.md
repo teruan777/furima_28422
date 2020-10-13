@@ -42,6 +42,8 @@ Things you may want to cover:
 ### Association
 - has_many :items
 - has_many :purchases
+- has_many :keeps
+- has_many :comments
 ## itemテーブル
 
 | Colums             | Type       | Options                   |
@@ -56,22 +58,26 @@ Things you may want to cover:
 | arrival_day_id     | integer    | null: false               |
 | price              | integer    | null: false               |
 | user               | references | null: false, foreign_key: |
-| buy                | boolean    | null: false               |
+| buy                | boolean    |                           |
+
+
 
 ### Association
 - belongs_to :user
 - has_one    :purchase
+- has_many :keeps
+- has_many :comments
 
 ## purchaseテーブル
 | Colums | Type       | Option                    |
 | ------ | ---------- | ------------------------- |
 | user   | references | null: false, foreign_key: |
-| item   | refetences | null: false, foreign_key: |
+| item   | references | null: false, foreign_key: |
 
 ### Association
-belongs_to :user
-belongs_to :item
-has_one    :house_add
+- belongs_to :user
+- belongs_to :item
+- has_one    :house_add
 
 ## house_addテーブル
 
@@ -83,7 +89,29 @@ has_one    :house_add
 | address            | string     | null: false               |
 | building_name      | string     |                           |
 | phone              | string     | null: false               |
-| user               | references | null: false, foreign_key: |
+| purchase           | references | null: false, foreign_key: |
 
 ### Association
-belongs_to :purchase
+- belongs_to :purchase
+
+
+## keepテーブル
+| Colums | Type       | Option                    |
+| ------ | ---------- | ------------------------- |
+| user   | references | null: false, foreign_key: |
+| item   | refetences | null: false, foreign_key: |
+
+### Association
+- belongs_to :user
+- belongs_to :item
+
+## commentテーブル
+| Colums | Type       | Option                    |
+| ------ | ---------- | ------------------------- |
+| text   | text       | null: false               |
+| user   | references | null: false, foreign_key: |
+| item   | refetences | null: false, foreign_key: |
+
+### Association
+- belongs_to :user
+- belongs_to :item

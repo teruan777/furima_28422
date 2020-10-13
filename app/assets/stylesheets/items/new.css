@@ -80,6 +80,14 @@
   padding: 2vh 0;
 }
 
+.image-preview>div>img {
+  height: 40vh;
+  width: 30vw;
+
+
+}
+
+
 .click-upload {
   margin: 15px 0;
   min-width: 250px;
@@ -227,3 +235,4 @@
 .inc {
   font-size: 13px;
 }
+

@@ -4,7 +4,9 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
   has_many :items
+  has_many :keeps
   has_many :purchases
+  has_many :comments
 
   with_options presence: true do
     validates :nickname, :email, :password, :familyname_kanji, :firstname_kanji, :familyname_katakana, :firstname_katakana, :birthday
@@ -21,7 +23,7 @@ class User < ApplicationRecord
       validates :familyname_kanji
       validates :firstname_kanji
     end
-    
+
     with_options format: { with: /\A[ァ-ヶー－]+\z/.freeze } do
       validates :familyname_katakana
       validates :firstname_katakana

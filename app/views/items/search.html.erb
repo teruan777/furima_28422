@@ -1,0 +1,95 @@
+<%= render "shared/header" %>
+
+<div class='item-contentss'>
+  <h1 class='title'>商品検索</h1>
+
+<%= search_form_for @p, url: items_search_path do |f| %>
+  <div class='searchs'>
+    <div class='category'>
+      <div class=category-font>
+        <%= f.label :category_id_eq, 'カテゴリー' %>
+      </div>
+      <div class='category-select'>
+        <%= f.collection_select :category_id_eq, @category, :id, :name,  include_blank: '指定なし' %>
+      </div>
+    </div>
+      <br>
+    <div class='category'>
+      <div class=category-font>
+        <%= f.label :status_id_eq, '商品の状態' %>
+      </div>
+      <div class='category-select'>
+        <%= f.collection_select :status_id_eq, @status, :id, :name,  include_blank: '指定なし' %>
+      </div>
+    </div>
+      <br>
+    <div class='category'>
+      <div class=category-font>
+        <%= f.label :delivery_burden_id_eq, '配送料の負担' %>
+      </div>
+      <div class='category-select'>
+        <%= f.collection_select :delivery_burden_id_eq, @delivery_burden, :id, :name,  include_blank: '指定なし' %>
+      </div>
+    </div>
+      <br>
+    <div class='category'>
+      <div class=category-font>
+        <%= f.label :arrival_day_eq, '発送までの日数' %>
+      </div>
+      <div class='category-select'>
+        <%= f.collection_select :arrival_day_id_eq, @arrival_day, :id, :name,  include_blank: '指定なし' %>
+      </div>
+    </div>
+      <br>
+  </div>
+      <div class='botan'>
+        <%= f.submit '検索'  %>
+      </div>
+</div>
+<% end %>
+
+
+<%# 検索結果の個数で条件分岐 %>
+<% if @results.length !=0 %>
+  <div class='item-contents'>
+    <h2 class='title'>以下の商品が該当いたしました！</h2>
+    <%= link_to '新規投稿商品', "#", class: "subtitle" %>
+    <ul class='item-lists'>
+      <% @results.each do |item| %>
+      <li class='list'>
+        <%= link_to item_path(item.id), method: :get do %>
+        <div class='item-img-content'>
+          <%= image_tag item.image, class: "item-img" if item.image.attached? %>
+        </div>
+        <div class='item-info'>
+          <h3 class='item-name'>
+            <%= item.item %>
+          </h3>
+          <div class='item-price'>
+            <span><%= item.price %>円<br>(税込み)</span>
+            <div class='star-btn'>
+              <%= image_tag "star.png", class:"star-icon" %>
+              <span class='star-count'>0</span>
+            </div>
+          </div>
+        </div>
+        <% end %>
+      </li>
+      <% end %>
+    </ul>
+  </div>
+<% else %>
+  <div class='item-contents'>
+    <h2 class='title'>該当した商品は既に購入されていました</h2>
+    <%= link_to '新規投稿商品', "#", class: "subtitle" %>
+    <ul class='item-lists'>
+    <li class='list'>
+      <%= image_tag "https://1.bp.blogspot.com/-ixQPkOtXMn0/WUdZWKUBRQI/AAAAAAABFFI/YN7PJtsm8YEnGHzRaP8hsKGis1qZAxtZQCLcBGAs/s400/shopping_urikiremashita_woman.png", class: "item-img" %>
+      <div class='item-info'>
+      </div>
+    </li>
+  <div>
+<% end %>
+<br>
+
+<%= render "shared/footer" %>

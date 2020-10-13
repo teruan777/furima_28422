@@ -1,0 +1,28 @@
+ja:
+ activerecord:
+   attributes:
+     user:
+       nickname: ニックネーム
+       familyname_kanji: 苗字(漢字)
+       firstname_kanji: 名前(漢字)
+       familyname_katakana: 苗字(カナ)
+       firstname_katakana: 名前(カナ)
+       birthday: 生年月日
+     item:
+       item: 商品の名前
+       image: 画像
+       text: テキスト
+       category_id: カテゴリー
+       status_id: 商品の状態
+       delivery_burden_id: 配送料の負担
+       shipping_origin_id: 発送元の地域
+       arrival_day_id: 発送までの日数
+       price: 価格
+ activemodel:
+   attributes:
+     purchase_house_add:
+       postal_code: 郵便番号
+       shipping_origin_id: 都道府県
+       city: 市区町村
+       address: 番地
+       phone: 電話番号

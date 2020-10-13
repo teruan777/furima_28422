@@ -1,0 +1,51 @@
+  <%= render "shared/header" %>
+
+<% if @keeps.present? %>
+  <div class='item-contents'>
+    <h2 class='title'>あなたのお気に入りです</h2>
+    <%= link_to '新規投稿商品', "#", class: "subtitle" %>
+    <ul class='item-lists'>
+      <% @keeps.each do |keep| %>
+      <li class='list'>
+        <%= link_to item_path(keep.item.id), method: :get do %>
+        <div class='item-img-content'>
+          <%= image_tag keep.item.image, class: "item-img" if keep.item.image.attached? %>
+
+          <% if keep.item.buy == true %>
+            <div class='sold-out'>
+              <span>Sold Out!!</span>
+            </div>
+          <% end %>
+
+        </div>
+        <div class='item-info'>
+          <h3 class='item-name'>
+            <%= keep.item.item %>
+          </h3>
+          <div class='item-price'>
+            <span><%= keep.item.price %>円<br>(税込み)</span>
+            <div class='star-btn'>
+              <%= image_tag "star.png", class:"star-icon" %>
+              <span class='star-count'>0</span>
+            </div>
+          </div>
+        </div>
+        <% end %>
+      </li>
+      <% end %>
+    </ul>
+  </div>
+<% else %>
+  <div class='item-contents'>
+    <h2 class='title'>お気に入り登録された商品はここに表示されます</h2>
+    <%= link_to '新規投稿商品', "#", class: "subtitle" %>
+    <ul class='item-lists'>
+    <li class='list'>
+      <%= image_tag "https://1.bp.blogspot.com/-ZOg0qAG4ewU/Xub_uw6q0DI/AAAAAAABZio/MshyuVBpHUgaOKJtL47LmVkCf5Vge6MQQCNcBGAsYHQ/s1600/pose_pien_uruuru_woman.png", class: "item-img" %>
+      <div class='item-info'>
+      </div>
+    </li>
+  <div>
+<% end %>
+
+<%= render "shared/footer" %>

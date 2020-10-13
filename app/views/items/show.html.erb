@@ -1,75 +1,123 @@
 <%= render "shared/header" %>
 
+<div class="item-show">
+  <div class="links">
+  <% if @item.previous.present? %>
+    <div class="change-item-btn">
+      <%= link_to '＜ 前の商品', item_path(@item.previous) %>
+    </div>
+  <% else %>
+    <div class="change-item-btn">
+      ＜ ーーーー
+    </div>
+  <% end %>
+  <% if @item.next.present? %>
+    <div class="change-item-btn">
+      <%= link_to '後の商品 ＞', item_path(@item.next) %>
+    </div>
+  <% else %>
+    <div class="change-item-btn">
+      ーーーー ＞
+    </div>
+  <% end %>
+  </div>
+</div>
+
 <%# 商品の概要 %>
 <div class="item-show">
   <div class="item-box">
     <h2 class="name">
-      <%= "商品名" %>
+      <%= @item.item %>
     </h2>
     <div class='item-img-content'>
-      <%= image_tag "item-sample.png" ,class:"item-box-img" %>
-      <%# 商品が売れている場合は、sold outの表示をしましょう。 %>
+      <%= image_tag @item.image ,class:"item-box-img" %>
+
+      <% if @item.buy == true %>
       <div class='sold-out'>
         <span>Sold Out!!</span>
       </div>
-      <%# //商品が売れている場合は、sold outの表示をしましょう。 %>
+      <% end %>
+
     </div>
     <div class="item-price-box">
       <span class="item-price">
-        ¥ 999,999,999
+        <%= @item.price %>¥
       </span>
       <span class="item-postage">
         (税込) 送料込み
       </span>
     </div>
 
-    <%# ログインしていて、なおかつ、ログインしているユーザと出品しているユーザが同一人物でないとき表示しましょう。 %>
+   
+      <% if user_signed_in? && current_user.id == @item.user.id   %>
+        <% if @item.buy == true %>
+          <p class='or-text'>｜この度はFURIMAアプリをご利用いただき誠にありがとうございました｜</p>
+          <p class='or-text'>｜恐れながら商品は既に購入されましたので編集を行うことができません｜</p>
+        <% end %>
+        <%= link_to '商品の編集', edit_item_path(@item.id), method: :get, class: "item-red-btn" %>
+        <p class='or-text'>or</p>
+        <%= link_to '削除', item_path(@item.id), method: :delete, class:'item-destroy' %>
+      <% else %>
+  
+        <% if @item.buy == nil %>
+        <%= link_to '購入画面に進む', item_purchases_path(@item.id) ,class:"item-red-btn"%>
+        <% end %>
+  
+      <% end %>
 
-    <%= link_to '商品の編集', "#", method: :get, class: "item-red-btn" %>
-    <p class='or-text'>or</p>
-    <%= link_to '削除', "#", method: :delete, class:'item-destroy' %>
 
-    <%# 商品が売れていない場合はこちらを表示しましょう %>
-    <%= link_to '購入画面に進む', "#" ,class:"item-red-btn"%>
-    <%# //商品が売れていない場合はこちらを表示しましょう %>
-
-    <%# //ログインしていて、なおかつ、ログインしているユーザと出品しているユーザが同一人物でないとき表示しましょう。 %>
 
     <div class="item-explain-box">
-      <span><%= "商品説明" %></span>
+      <span><%= @item.text %></span>
     </div>
     <table class="detail-table">
       <tbody>
         <tr>
           <th class="detail-item">出品者</th>
-          <td class="detail-value"><%= "出品者名" %></td>
+          <td class="detail-value"><%= @item.user.nickname %></td>
         </tr>
         <tr>
           <th class="detail-item">カテゴリー</th>
-          <td class="detail-value"><%= "カテゴリー名" %></td>
+          <td class="detail-value"><%= @item.category.name %></td>
         </tr>
         <tr>
           <th class="detail-item">商品の状態</th>
-          <td class="detail-value"><%= "商品の状態" %></td>
+          <td class="detail-value"><%= @item.status.name %></td>
         </tr>
         <tr>
           <th class="detail-item">配送料の負担</th>
-          <td class="detail-value"><%= "発送料の負担" %></td>
+          <td class="detail-value"><%= @item.delivery_burden.name %></td>
         </tr>
         <tr>
           <th class="detail-item">発送元の地域</th>
-          <td class="detail-value"><%= "発送元の地域" %></td>
+          <td class="detail-value"><%= @item.shipping_origin.name %></td>
         </tr>
         <tr>
           <th class="detail-item">発送日の目安</th>
-          <td class="detail-value"><%= "発送日の目安" %></td>
+          <td class="detail-value"><%= @item.arrival_day.name %></td>
         </tr>
       </tbody>
     </table>
     <div class="option">
       <div class="favorite-btn">
-        <%= image_tag "star.png" ,class:"favorite-star-icon" ,width:"20",height:"20"%>
-        <span>お気に入り 0</span>
+        <% if user_signed_in? %>
+          <% if current_user.id != @item.user_id %>
+            <% if @keeps.present? %>
+              <% if current_user.id == @keeps.user_id %>
+                <%= image_tag "star.png" ,class:"favorite-star-icon" ,width:"20",height:"20"%>
+                <%= link_to 'お気に入り解除', item_keep_path(@item.id), method: :delete %>
+              <% end %>
+            <% else %>
+              <%= link_to 'お気に入り', item_keeps_path(@item.id), method: :post  %>
+            <% end %>
+          <% else %>
+            <%= image_tag "star.png" ,class:"favorite-star-icon" ,width:"20",height:"20"%>
+            <span>お客様の商品です</span>
+          <% end %>
+        <% else %>
+          <%= image_tag "star.png" ,class:"favorite-star-icon" ,width:"20",height:"20"%>
+          <span>ログインしてね</span>
+        <% end %>
       </div>
       <div class="report-btn">
         <%= image_tag "flag.png" ,class:"report-flag-icon" ,width:"20",height:"20"%>
@@ -79,29 +127,63 @@
   </div>
   <%# /商品の概要 %>
 
-  <div class="comment-box">
-    <form>
-      <textarea class="comment-text"></textarea>
-      <p class="comment-warn">
-        相手のことを考え丁寧なコメントを心がけましょう。
-        <br>
-        不快な言葉遣いなどは利用制限や退会処分となることがあります。
-      </p>
-      <button type="submit" class="comment-btn">
-        <%= image_tag "comment.png" ,class:"comment-flag-icon" ,width:"20",height:"25"%>
-        <span>コメントする<span>
-      </button>
-    </form>
+  <div class="container">
+    <% if current_user %>
+      <%= form_with(model: [@item, @comment], local: true) do |form| %>
+        <%= form.text_area :text, placeholder: "コメントしましょう", rows: "2" %>
+        <%= form.submit "送信"%>
+      <% end %>
+    <% else %>
+      <strong><p>※※※ コメントの投稿には新規登録/ログインが必要です ※※※</p></strong>
+    <% end %>
   </div>
+  <div class="comment-warning">
+    <p>相手のことを考えて丁寧なコメントを心がけましょう</p>
+    <p>不適切な発言をする方は退会処分となる可能性がございます</p>
+  </div>
+  <div class="comment-itirann" >
+    <h4>＜コメント一覧＞</h4>
+  </div>
+  <div class="comments", id="comments_id">
+    <% if @comments %>
+      <% @comments.reverse_each do |comment| %>
+        <div class="comment" >
+        <p>
+        <div class="comment-href">
+          <p><%= comment.user.nickname %></p>
+        </div>
+        <div class="comment-bun">
+          <%= comment.text %>
+        </div>
+        </p>
+        </div>
+      <% end %>
+    <% end %>
+  </div>
+
   <div class="links">
-    <a href="#" class="change-item-btn">
-      ＜ 前の商品
-    </a>
-    <a href="#" class="change-item-btn">
-      後ろの商品 ＞
-    </a>
+  <% if @item.previous.present? %>
+    <div class="change-item-btn">
+      <%= link_to '＜ 前の商品', item_path(@item.previous) %>
+    </div>
+  <% else %>
+    <div class="change-item-btn">
+      ＜ ーーーー
+    </div>
+  <% end %>
+  <% if @item.next.present? %>
+    <div class="change-item-btn">
+      <%= link_to '後の商品 ＞', item_path(@item.next) %>
+    </div>
+  <% else %>
+    <div class="change-item-btn">
+      ーーーー ＞
+    </div>
+  <% end %>
   </div>
-  <a href="#" class='another-item'><%= "商品のカテゴリー名" %>をもっと見る</a>
+  <div class='another-item'>
+    <%= link_to "もっと商品を探してみる", items_shadow_search_path %>
+  </div>
 </div>
 
 <%= render "shared/footer" %>

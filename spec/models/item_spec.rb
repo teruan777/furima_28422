@@ -16,7 +16,7 @@ RSpec.describe Item, type: :model do
 
         @item.valid?
         expect(@item.errors.full_messages).to include("Item can't be blank")
-        I18n.with_locale(:en) do #日本語のエラー文を用いて検証
+        I18n.with_locale(:ja) do #日本語のエラー文を用いて検証
           @item.valid?
         end
         expect(@item.errors[:item]).to include("を入力してください")

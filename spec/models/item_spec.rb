@@ -59,7 +59,7 @@ RSpec.describe Item, type: :model do
         expect(@item).to_not be_valid
       end
       it 'priceが9999999円以上だと出品できない' do
-        @item.price = 10_000_000
+        @item.price = 10_000_00
         expect(@item).to_not be_valid
       end
     end

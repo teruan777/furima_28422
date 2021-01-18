@@ -3,7 +3,7 @@ class Item < ApplicationRecord
   belongs_to :user
   has_one :purchase
   has_many :keeps, dependent: :destroy
-  has_many :comments
+  has_many :comments, dependent: :destroy
 
   extend ActiveHash::Associations::ActiveRecordExtensions
   belongs_to_active_hash :category

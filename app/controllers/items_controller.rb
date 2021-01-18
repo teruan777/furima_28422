@@ -2,7 +2,7 @@ class ItemsController < ApplicationController
   before_action :set_item, only: [:show, :destroy, :edit, :update]
   before_action :set_keep, only: [:show]
   before_action :search_item, only: [:shadow_search, :search]
-  before_action :back_to_edit, only: [:edit]
+  before_action :back_to_edit_and_destroy, only: [:edit, :destroy]
   before_action :authenticate_user!, only: [:new, :edit]
   before_action :back_to_index, except: [:index, :show, :shadow_search, :search]
 
@@ -89,7 +89,7 @@ class ItemsController < ApplicationController
   end
 
 
-  def back_to_edit
+  def back_to_edit_and_destroy
     redirect_to item_path(@item.id) unless @item.buy == nil
   end
 
